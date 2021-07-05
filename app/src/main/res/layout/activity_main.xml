@@ -6,43 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--TODO(Step 2 - We have updated some of the attributes as below for design improvements as required.)-->
-    <!--Here we have added list of points
-        1. Updated the attribute 'app:layout_constraintBottom_toTopOf'
-        as '@+id/ll_paint_colors' instead of '@+id/ib_brush'.-->
-    <!--START-->
-    <com.kidsdrawingapp.DrawingView
-        android:id="@+id/drawing_view"
+
+    <FrameLayout
+        android:id="@+id/fl_drawing_view_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="5dp"
-        android:layout_marginBottom="80dp"
+        android:padding="1dp"
         android:background="@drawable/background_drawing_view_layout"
-        app:layout_constraintBottom_toTopOf="@+id/ll_paint_colors"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <!--END-->
+        app:layout_constraintBottom_toTopOf="@+id/ll_paint_colors"
+        >
 
-    <!--TODO(Step 1 - We have added Color picker layout.)-->
-    <!--Here we have added list of points
-    1. Added layout for colors.
-    2. Added a Image buttons for different colors.
-    3. Added custom background with border in the drawable folder.
-    4. Here we have added a button size in the dimen.xml file.
-    5. And the color are added in the color.xml-->
+        <ImageView
+            android:id="@+id/iv_background"
+            android:scaleType="centerCrop"
+            android:contentDescription="Background Image"
+            android:src="@drawable/bgimage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ImageView>
 
-    <!--START-->
-    <!-- Color pallet_normal -->
+        <com.kidsdrawingapp.DrawingView
+            android:id="@+id/drawing_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80FFFFFF"
+            />
+
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/ll_paint_colors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/ib_brush"
+        app:layout_constraintBottom_toTopOf="@id/ll_action_buttons"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/drawing_view">
+        app:layout_constraintTop_toBottomOf="@id/fl_drawing_view_container">
 
         <ImageButton
             android:layout_width="25dp"
@@ -135,17 +139,37 @@
             android:tag="@color/white" />
 
     </LinearLayout>
-    <!--END-->
 
-    <ImageButton
-        android:id="@+id/ib_brush"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:contentDescription="image"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_brush"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/ll_action_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <ImageButton
+            android:id="@+id/ib_gallery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="ic_gallery"
+            android:scaleType="fitXY"
+            android:src="@drawable/imageicon1"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_brush"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="ic_brush"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_brush"
+            />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
