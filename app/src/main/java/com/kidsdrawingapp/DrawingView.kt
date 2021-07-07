@@ -56,9 +56,17 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     private var canvas: Canvas? = null
 
     private val mPaths = ArrayList<CustomPath>() // ArrayList for Paths
+    private val mUndoPaths = ArrayList<CustomPath>() // ArrayList for Undo Paths
 
     init {
         setUpDrawing()
+    }
+
+    fun onClickUndo(){
+        if(mPaths.size > 0){
+            mUndoPaths.add(mPaths.removeAt(mPaths.size - 1))
+            invalidate()
+        }
     }
 
     /**
