@@ -1,9 +1,13 @@
 package com.kidsdrawingapp
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
+import android.widget.Gallery
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_brush_size.*
+import java.lang.Exception
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
@@ -51,12 +56,32 @@ class MainActivity : AppCompatActivity() {
 
         ib_gallery.setOnClickListener{
             if(isReadStorageAllowed()){
-                //run code to get image from gallery
+                val pickPhotoIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+                startActivityForResult(pickPhotoIntent, GALLERY)
             }else{
                 requestStoragePermission()
             }
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            if(requestCode == GALLERY){
+                try {
+                    if (data!!.data != null){
+                        iv_background.visibility = View.VISIBLE
+                        iv_background.setImageURI(data.data)
+                    }else{
+                        Toast.makeText(this@MainActivity, "Error in parsing code or image is corrupted", Toast.LENGTH_SHORT).show()
+                    }
+                }catch (e: Exception){
+                    e.printStackTrace()
+                }
+            }
+        }
     }
 
     /**
@@ -143,6 +168,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object{
         private const val STORAGE_PERMISSION_CODE = 1
+        private const val GALLERY = 2
     }
 
 }

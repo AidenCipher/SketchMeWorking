@@ -24,7 +24,6 @@
             android:id="@+id/iv_background"
             android:scaleType="centerCrop"
             android:contentDescription="Background Image"
-            android:src="@drawable/bgimage"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </ImageView>
