@@ -1,4 +1,4 @@
-package com.sketchme
+package com.kidsDrawingApp
 
 import org.junit.Test
 

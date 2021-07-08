@@ -1,4 +1,4 @@
-package com.sketchme
+package com.kidsDrawingApp
 
 import android.app.Activity
 import android.app.Dialog

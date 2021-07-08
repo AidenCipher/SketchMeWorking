@@ -1,4 +1,4 @@
-package com.sketchme
+package com.kidsDrawingApp
 
 import android.annotation.SuppressLint
 import android.content.Context
