@@ -28,7 +28,7 @@
             android:layout_height="match_parent">
         </ImageView>
 
-        <com.kidsdrawingapp.DrawingView
+        <com.sketchme.DrawingView
             android:id="@+id/drawing_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -178,6 +178,16 @@
             android:contentDescription="ic_undo"
             android:scaleType="fitXY"
             android:src="@drawable/ic_undo"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="ic_save"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_save"
             />
 
     </LinearLayout>
